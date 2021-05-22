@@ -25,7 +25,7 @@ class Display extends React.Component {
     this.state = {
       widgets: [],
       layout: DEFAULT_LAYOUT,
-      statusBar: DEFAULT_STATUS_BAR
+      statusBar: DEFAULT_STATUS_BAR,
     }
     this.throttledRefresh = _.debounce(this.refresh, 1500)
   }
@@ -50,28 +50,28 @@ class Display extends React.Component {
 
   render() {
     const { widgets, layout, statusBar } = this.state
-    const widgetLayout = widgets.map(widget => ({
+    const widgetLayout = widgets.map((widget) => ({
       i: widget._id,
       x: widget.x || 0,
       y: widget.y || 0,
       w: widget.w || 1,
-      h: widget.h || 1
+      h: widget.h || 1,
     }))
 
     const GridLayoutWithHeight = HeightProvider(GridLayout, this.container, layout)
 
     return (
       <Frame statusBar={statusBar}>
-        <div className={'gridContainer'} ref={ref => (this.container = ref)}>
+        <div className={'gridContainer'} ref={(ref) => (this.container = ref)}>
           <GridLayoutWithHeight
-            className='layout'
+            className="layout"
             isDraggable={false}
             isResizable={false}
             layout={widgetLayout}
             cols={6}
             margin={layout == 'spaced' ? [10, 10] : [0, 0]}
           >
-            {widgets.map(widget => {
+            {widgets.map((widget) => {
               const Widget = Widgets[widget.type] ? Widgets[widget.type].Widget : EmptyWidget
               return (
                 <div key={widget._id} className={'widget'}>
