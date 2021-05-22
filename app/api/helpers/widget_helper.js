@@ -9,7 +9,7 @@ function addWidget(req, res) {
       display.widgets.push(widget._id)
       return display.save().then(display => {
         if (!display) return res.status(500).json({ error: 'Display not saved' })
-        return res.json({ success: true })
+        // return res.json({ success: true })
       })
     })
     .catch(err => res.json(err))
